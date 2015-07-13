@@ -5,19 +5,28 @@ import java.awt.event.ActionListener;
 
 public class StepListener implements ActionListener {
 
-    boolean isXStep = true;
+    private boolean isXStep = true;
 
     @Override
     public void actionPerformed(ActionEvent e) {
         MyButton b = (MyButton) e.getSource();
         if (b.getText().equals("")) {
-            if (isXStep) {
+            if (isXStep()) {
                 b.setText("X");
-                isXStep = false;
+                setIsXStep(false);
             } else {
                 b.setText("0");
-                isXStep = true;
+                setIsXStep(true);
             }
         }
+    }
+
+
+    public boolean isXStep() {
+        return isXStep;
+    }
+
+    public void setIsXStep(boolean isXStep) {
+        this.isXStep = isXStep;
     }
 }

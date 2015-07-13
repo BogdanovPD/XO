@@ -145,7 +145,7 @@ public class GUI {
     }
 
     public void checkNext(StepListener stepListener){
-        if (stepListener.isXStep)
+        if (stepListener.isXStep())
             label.setText("\"X\" is next");
         else
             label.setText("\"0\" is next");
@@ -153,10 +153,11 @@ public class GUI {
 
     public void newGame() {
         for (int i = 0; i < arrayList.size(); i++) {
-            if (!arrayList.get(i).equals(null))
-                arrayList.get(i).setText("");
+            MyButton button = arrayList.get(i);
+            if (!button.equals(null))
+                button.setText("");
             if (!stepListener.equals(null))
-                stepListener.isXStep = true;
+                stepListener.setIsXStep(true);
         }
     }
 
