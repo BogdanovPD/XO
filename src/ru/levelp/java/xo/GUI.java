@@ -153,10 +153,10 @@ public class GUI {
 
     public void newGame() {
         for (int i = 0; i < arrayList.size(); i++) {
-            MyButton button = arrayList.get(i);
-            if (!button.equals(null))
-                button.setText("");
-            if (!stepListener.equals(null))
+           // MyButton button = arrayList.get(i);
+            if (arrayList.get(i) != null)
+                arrayList.get(i).setText("");
+           // if (!stepListener.equals(null))
                 stepListener.setIsXStep(true);
         }
     }
