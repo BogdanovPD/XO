@@ -11,7 +11,7 @@ public class WinnerWindow {
         JFrame frame = new JFrame("");
         frame.setBounds(100, 100, 200, 100);
 
-        JLabel email = new JLabel(winner + " wins!");
+        JLabel winnerLabel = new JLabel(winner + " wins!");
 
         JButton okButton = new JButton("ok");
         okButton.addActionListener(new ActionListener() {
@@ -24,7 +24,7 @@ public class WinnerWindow {
         JPanel panel = new JPanel();
         panel.add(okButton);
 
-        frame.add(BorderLayout.CENTER, email);
+        frame.add(BorderLayout.CENTER, winnerLabel);
         frame.add(BorderLayout.SOUTH, panel);
 
         frame.setVisible(true);
