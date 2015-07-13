@@ -15,10 +15,9 @@ public class StepListener implements ActionListener {
                 b.setText("X");
                 isXStep = false;
             } else {
-                b.setText("O");
+                b.setText("0");
                 isXStep = true;
             }
-            //b[k].setEnabled(false);
         }
     }
 }

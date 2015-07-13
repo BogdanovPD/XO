@@ -1,18 +1,17 @@
 package ru.levelp.java.xo;
 
-        import javax.swing.*;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+public class WinnerWindow {
 
-public class About {
-
-    public void open() {
+    public void open(String winner) {
         JFrame frame = new JFrame("About");
         frame.setBounds(100, 100, 200, 100);
 
-        JLabel email = new JLabel("bogdanovpd@gmail.com");
+        JLabel email = new JLabel(winner + " wins!");
 
         JButton okButton = new JButton("ok");
         okButton.addActionListener(new ActionListener() {
@@ -30,4 +29,5 @@ public class About {
 
         frame.setVisible(true);
     }
+
 }
