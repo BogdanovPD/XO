@@ -8,34 +8,54 @@ import java.util.ArrayList;
 
 public class GUI {
 
+    ArrayList<MyButton> arrayList = new ArrayList<MyButton>();
+
     public void build() {
         JFrame frame = new JFrame("XO");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setBounds(100, 100, 300, 300);
+
+        JMenuBar bar = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem aboutMenuItem = new JMenuItem("About");
+        JMenuItem newGameMenuItem = new JMenuItem("New Game");
+        JMenuItem quitMenuItem = new JMenuItem("Quit");
+
+        aboutMenuItem.addActionListener(new AboutListener());
+
+        newGameMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (!arrayList.get(i).equals(null))
+                    arrayList.get(i).setText("");
+                }
+               // isXStep = true;
+            }
+        });
+
+        quitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         JPanel panel = new JPanel();
         frame.add(panel);
 
         panel.setLayout(new GridLayout(3, 3));
 
-        ArrayList<JButton> arrayList = new ArrayList<JButton>();
+        StepListener stepListener = new StepListener();
 
         for (int i = 0; i < 9; i++) {
-            arrayList.add(new JButton());
+            arrayList.add(new MyButton());
+            arrayList.get(i).addActionListener(stepListener);
             panel.add(arrayList.get(i));
         }
 
-        for (int i = 0; i < arrayList.size(); i++) {
-            final int finalI = i;
-            arrayList.get(i).addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                        arrayList.get(finalI).setText("X");
-                }
-            });
-        }
-
-
+        frame.setJMenuBar(bar);
+        frame.add(BorderLayout.CENTER, panel);
         frame.setVisible(true);
 
     }
