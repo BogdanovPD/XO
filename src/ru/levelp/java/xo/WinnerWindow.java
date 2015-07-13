@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class WinnerWindow {
 
     public void open(String winner) {
-        JFrame frame = new JFrame("About");
+        JFrame frame = new JFrame("");
         frame.setBounds(100, 100, 200, 100);
 
         JLabel email = new JLabel(winner + " wins!");
