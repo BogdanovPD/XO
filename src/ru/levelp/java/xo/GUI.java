@@ -77,9 +77,7 @@ public class GUI {
             }
         });
 
-
-        //redView.addActionListener(new SwitchGUIListener(this));
-        view.addActionListener(new SwitchGUIListener(this));
+        view.addActionListener(new SwitchGUI_Listener(this));
 
         fileMenu.add(newGameMenuItem);
         fileMenu.add(quitMenuItem);
