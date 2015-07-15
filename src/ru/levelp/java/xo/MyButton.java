@@ -6,18 +6,18 @@ import java.awt.*;
 
 public class MyButton extends JButton {
 
-    public MyButton(String title) {
-        super(title); //new JButton("")
-        setFont(new Font("Arial", Font.BOLD, 30));
-        setForeground(Color.BLUE);
-        setBackground(Color.ORANGE);
+    public MyButton() {
+        super();
     }
 
-    public MyButton() {
-        super(); //new JButton("")
-        setFont(new Font("Arial", Font.BOLD, 30));
-        setForeground(Color.BLUE);
-        setBackground(Color.ORANGE);
+    public MyButton(String s) {
+        super(s);
+    }
+
+    public void setStyle(Font font, Color foreGround, Color backGround){
+        setFont(font);
+        setForeground(foreGround);
+        setBackground(backGround);
     }
 
 }

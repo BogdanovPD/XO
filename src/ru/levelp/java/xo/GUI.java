@@ -8,28 +8,39 @@ import java.util.ArrayList;
 
 public class GUI {
 
-    ArrayList<MyButton> arrayList = new ArrayList<MyButton>();
-    StepListener stepListener = new StepListener();
-    JLabel label = new JLabel();
+    protected ArrayList<MyButton> arrayList = new ArrayList<MyButton>();
+    protected StepListener stepListener = new StepListener(this);
+    protected JLabel label = new JLabel();
+    protected boolean isXStep = true;
+    protected MyFrame frame = new MyFrame("X0");
+    protected JMenuBar bar;
+    protected JPanel panel;
+    protected GridLayout gridLayout = new GridLayout(3, 3);
+    JMenuItem view = new JMenuItem("Red style");;
+
+    //protected Font buttonFont;
+    //protected Color backgroundButtonColor;
+    //protected Color foregroundButtonColor;
 
     public void build() {
-        JFrame frame = new JFrame("XO");
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        frame.setBounds(100, 100, 300, 300);
 
-        JMenuBar bar = new JMenuBar();
+        bar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
+        JMenu viewMenu = new JMenu("View");
         JMenuItem aboutMenuItem = new JMenuItem("About");
         JMenuItem newGameMenuItem = new JMenuItem("New Game");
         JMenuItem quitMenuItem = new JMenuItem("Quit");
+        //JMenuItem redView = new JMenuItem("Red style");
+        JMenuItem bigView = new JMenuItem("Big window");
+        JMenuItem normalView = new JMenuItem("Normal window");
+        normalView.setEnabled(false);
 
-        aboutMenuItem.addActionListener(new AboutListener());
+        aboutMenuItem.addActionListener(new AboutListener(this));
 
         newGameMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newGame();
-               // isXStep = true;
             }
         });
 
@@ -40,16 +51,50 @@ public class GUI {
             }
         });
 
+        bigView.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setBounds(100, 100, 600, 600);
+                for (int i = 0; i < arrayList.size(); i++) {
+                    Font oldFont = arrayList.get(i).getFont();
+                    arrayList.get(i).setFont(new Font(oldFont.getFontName(), oldFont.getStyle(), oldFont.getSize() + 20));
+                }
+                bigView.setEnabled(false);
+                normalView.setEnabled(true);
+            }
+        });
+
+        normalView.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setBounds(100, 100, 300, 300);
+                for (int i = 0; i < arrayList.size(); i++) {
+                    Font oldFont = arrayList.get(i).getFont();
+                    arrayList.get(i).setFont(new Font(oldFont.getFontName(), oldFont.getStyle(), oldFont.getSize() - 20));
+                }
+                bigView.setEnabled(true);
+                normalView.setEnabled(false);
+            }
+        });
+
+
+        //redView.addActionListener(new SwitchGUIListener(this));
+        view.addActionListener(new SwitchGUIListener(this));
+
         fileMenu.add(newGameMenuItem);
         fileMenu.add(quitMenuItem);
+        //viewMenu.add(redView);
+        viewMenu.add(view);
+        viewMenu.add(bigView);
+        viewMenu.add(normalView);
         bar.add(fileMenu);
+        bar.add(viewMenu);
         bar.add(aboutMenuItem);
 
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         frame.add(panel);
 
-        panel.setLayout(new GridLayout(3, 3));
-
+        panel.setLayout(gridLayout);
 
         for (int i = 0; i < 9; i++) {
             arrayList.add(new MyButton());
@@ -57,106 +102,111 @@ public class GUI {
             panel.add(arrayList.get(i));
         }
 
+        gridLayout.setHgap(10);
+        gridLayout.setVgap(10);
+        panel.setBackground(Color.CYAN);
+        for (int i = 0; i < arrayList.size(); i++) {
+            arrayList.get(i).setStyle(new Font("Arial", Font.BOLD, 30), Color.WHITE, Color.BLUE);
+        }
+
+
         frame.setJMenuBar(bar);
         frame.add(BorderLayout.NORTH, label);
         frame.add(BorderLayout.CENTER, panel);
-        frame.setVisible(true);
 
-        while(true){
-            checkWinner();
-            checkNext(stepListener);
-        }
+        frame.setVisible(true);
 
     }
 
     public void checkWinner() {
         //1 5 9
         if ((arrayList.get(0).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(8).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(0).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(8).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //3 5 7
         if ((arrayList.get(2).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(6).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(2).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(6).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //1 2 3
         if ((arrayList.get(0).getText()=="X") && (arrayList.get(1).getText()=="X") && (arrayList.get(2).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(0).getText()=="0") && (arrayList.get(1).getText()=="0") && (arrayList.get(2).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //4 5 6
         if ((arrayList.get(3).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(5).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(3).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(5).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //7 8 9
         if ((arrayList.get(6).getText()=="X") && (arrayList.get(7).getText()=="X") && (arrayList.get(8).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(6).getText()=="0") && (arrayList.get(7).getText()=="0") && (arrayList.get(8).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //1 4 7
         if ((arrayList.get(0).getText()=="X") && (arrayList.get(3).getText()=="X") && (arrayList.get(6).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(0).getText()=="0") && (arrayList.get(3).getText()=="0") && (arrayList.get(6).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //2 5 8
         if ((arrayList.get(1).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(7).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(1).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(7).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //7 8 9
         if ((arrayList.get(6).getText()=="X") && (arrayList.get(7).getText()=="X") && (arrayList.get(8).getText()=="X")) {
-            new WinnerWindow().open("X");
+            new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
         if ((arrayList.get(6).getText()=="0") && (arrayList.get(7).getText()=="0") && (arrayList.get(8).getText()=="0")) {
-            new WinnerWindow().open("0");
+            new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
-    }
-
-    public void checkNext(StepListener stepListener){
-        if (stepListener.isXStep())
-            label.setText("\"X\" is next");
-        else
-            label.setText("\"0\" is next");
     }
 
     public void newGame() {
         for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i) != null)
                 arrayList.get(i).setText("");
-            stepListener.setIsXStep(true);
+            label.setText("\"X\" is next");
+            setIsXStep(true);
         }
     }
 
+    public boolean isXStep() {
+        return isXStep;
+    }
+
+    public void setIsXStep(boolean isXStep) {
+        this.isXStep = isXStep;
+    }
 }

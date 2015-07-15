@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 
 public class WinnerWindow {
 
-    public void open(String winner) {
+    public void open(String winner, String frameStyle) {
         JFrame frame = new JFrame("");
         frame.setBounds(100, 100, 200, 100);
 
         JLabel winnerLabel = new JLabel(winner + " wins!");
 
-        JButton okButton = new JButton("ok");
+        MyButton okButton = new MyButton("ok");
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -26,6 +26,18 @@ public class WinnerWindow {
 
         frame.add(BorderLayout.CENTER, winnerLabel);
         frame.add(BorderLayout.SOUTH, panel);
+
+        if (frameStyle.equals("blue")){
+            winnerLabel.setForeground(Color.DARK_GRAY);
+            panel.setBackground(Color.CYAN);
+            okButton.setStyle(new Font("Arial", Font.BOLD, 15), Color.WHITE, Color.BLUE);
+
+        }
+        else{
+            winnerLabel.setForeground(Color.DARK_GRAY);
+            panel.setBackground(Color.RED);
+            okButton.setStyle(new Font("Arial", Font.BOLD, 15), Color.WHITE, Color.PINK);
+        }
 
         frame.setVisible(true);
     }

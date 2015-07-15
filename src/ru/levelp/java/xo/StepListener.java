@@ -5,28 +5,28 @@ import java.awt.event.ActionListener;
 
 public class StepListener implements ActionListener {
 
-    private boolean isXStep = true;
+    private GUI gui;
 
-    @Override
+    public StepListener(GUI gui) {
+        this.gui = gui;
+    }
+
+       @Override
     public void actionPerformed(ActionEvent e) {
         MyButton b = (MyButton) e.getSource();
         if (b.getText().equals("")) {
-            if (isXStep()) {
+            if (gui.isXStep()) {
                 b.setText("X");
-                setIsXStep(false);
+                gui.setIsXStep(false);
+                gui.label.setText("\"0\" is next");
+                gui.checkWinner();
             } else {
                 b.setText("0");
-                setIsXStep(true);
+                gui.setIsXStep(true);
+                gui.label.setText("\"X\" is next");
+                gui.checkWinner();
             }
         }
     }
 
-
-    public boolean isXStep() {
-        return isXStep;
-    }
-
-    public void setIsXStep(boolean isXStep) {
-        this.isXStep = isXStep;
-    }
 }
