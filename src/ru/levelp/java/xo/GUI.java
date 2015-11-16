@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GUI {
+public class GUI implements Serializable {
 
     protected ArrayList<MyButton> arrayList = new ArrayList<MyButton>();
     protected StepListener stepListener = new StepListener(this);
@@ -16,7 +17,7 @@ public class GUI {
     protected JMenuBar bar;
     protected JPanel panel;
     protected GridLayout gridLayout = new GridLayout(3, 3);
-    JMenuItem view = new JMenuItem("Red style");;
+    JMenuItem view = new JMenuItem("Red style");
 
     //protected Font buttonFont;
     //protected Color backgroundButtonColor;
@@ -33,6 +34,8 @@ public class GUI {
         //JMenuItem redView = new JMenuItem("Red style");
         JMenuItem bigView = new JMenuItem("Big window");
         JMenuItem normalView = new JMenuItem("Normal window");
+        JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem openItem = new JMenuItem("Open");
         normalView.setEnabled(false);
 
         aboutMenuItem.addActionListener(new AboutListener(this));
@@ -78,8 +81,12 @@ public class GUI {
         });
 
         view.addActionListener(new SwitchGUI_Listener(this));
+        saveItem.addActionListener(new SaveCurrentCondition(this.frame));
+        openItem.addActionListener(new OpenCondition(this));
 
         fileMenu.add(newGameMenuItem);
+        fileMenu.add(openItem);
+        fileMenu.add(saveItem);
         fileMenu.add(quitMenuItem);
         //viewMenu.add(redView);
         viewMenu.add(view);

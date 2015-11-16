@@ -2,8 +2,9 @@ package ru.levelp.java.xo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
-public class StepListener implements ActionListener {
+public class StepListener implements ActionListener, Serializable {
 
     private GUI gui;
 

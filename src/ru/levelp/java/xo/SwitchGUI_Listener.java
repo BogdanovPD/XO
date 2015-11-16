@@ -14,6 +14,10 @@ public class SwitchGUI_Listener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        refresh();
+    }
+
+    public void refresh(){
         if (gui.frame.frameStyle.equals("blue")) {
             gui.gridLayout.setHgap(10);
             gui.gridLayout.setVgap(10);
@@ -37,4 +41,5 @@ public class SwitchGUI_Listener implements ActionListener {
             gui.frame.frameStyle = "blue";
         }
     }
+
 }

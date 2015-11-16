@@ -1,8 +1,9 @@
 package ru.levelp.java.xo;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class MyFrame extends JFrame {
+public class MyFrame extends JFrame implements Serializable {
 
     String frameStyle = "blue";
 
