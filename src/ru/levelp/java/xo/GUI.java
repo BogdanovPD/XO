@@ -81,7 +81,7 @@ public class GUI implements Serializable {
         });
 
         view.addActionListener(new SwitchGUI_Listener(this));
-        saveItem.addActionListener(new SaveCurrentCondition(this.frame));
+        saveItem.addActionListener(new SaveCurrentCondition(this));
         openItem.addActionListener(new OpenCondition(this));
 
         fileMenu.add(newGameMenuItem);
@@ -125,74 +125,74 @@ public class GUI implements Serializable {
 
     public void checkWinner() {
         //1 5 9
-        if ((arrayList.get(0).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(8).getText()=="X")) {
+        if ((arrayList.get(0).getText().equals("X")) && (arrayList.get(4).getText().equals("X")) && (arrayList.get(8).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(0).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(8).getText()=="0")) {
+        if ((arrayList.get(0).getText().equals("0")) && (arrayList.get(4).getText().equals("0")) && (arrayList.get(8).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //3 5 7
-        if ((arrayList.get(2).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(6).getText()=="X")) {
+        if ((arrayList.get(2).getText().equals("X")) && (arrayList.get(4).getText().equals("X")) && (arrayList.get(6).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(2).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(6).getText()=="0")) {
+        if ((arrayList.get(2).getText().equals("0")) && (arrayList.get(4).getText().equals("0")) && (arrayList.get(6).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //1 2 3
-        if ((arrayList.get(0).getText()=="X") && (arrayList.get(1).getText()=="X") && (arrayList.get(2).getText()=="X")) {
+        if ((arrayList.get(0).getText().equals("X")) && (arrayList.get(1).getText().equals("X")) && (arrayList.get(2).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(0).getText()=="0") && (arrayList.get(1).getText()=="0") && (arrayList.get(2).getText()=="0")) {
+        if ((arrayList.get(0).getText().equals("0")) && (arrayList.get(1).getText().equals("0")) && (arrayList.get(2).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //4 5 6
-        if ((arrayList.get(3).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(5).getText()=="X")) {
+        if ((arrayList.get(3).getText().equals("X")) && (arrayList.get(4).getText().equals("X")) && (arrayList.get(5).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(3).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(5).getText()=="0")) {
+        if ((arrayList.get(3).getText().equals("0")) && (arrayList.get(4).getText().equals("0")) && (arrayList.get(5).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //7 8 9
-        if ((arrayList.get(6).getText()=="X") && (arrayList.get(7).getText()=="X") && (arrayList.get(8).getText()=="X")) {
+        if ((arrayList.get(6).getText().equals("X")) && (arrayList.get(7).getText().equals("X")) && (arrayList.get(8).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(6).getText()=="0") && (arrayList.get(7).getText()=="0") && (arrayList.get(8).getText()=="0")) {
+        if ((arrayList.get(6).getText().equals("0")) && (arrayList.get(7).getText().equals("0")) && (arrayList.get(8).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //1 4 7
-        if ((arrayList.get(0).getText()=="X") && (arrayList.get(3).getText()=="X") && (arrayList.get(6).getText()=="X")) {
+        if ((arrayList.get(0).getText().equals("X")) && (arrayList.get(3).getText().equals("X")) && (arrayList.get(6).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(0).getText()=="0") && (arrayList.get(3).getText()=="0") && (arrayList.get(6).getText()=="0")) {
+        if ((arrayList.get(0).getText().equals("0")) && (arrayList.get(3).getText().equals("0")) && (arrayList.get(6).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //2 5 8
-        if ((arrayList.get(1).getText()=="X") && (arrayList.get(4).getText()=="X") && (arrayList.get(7).getText()=="X")) {
+        if ((arrayList.get(1).getText().equals("X")) && (arrayList.get(4).getText().equals("X")) && (arrayList.get(7).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(1).getText()=="0") && (arrayList.get(4).getText()=="0") && (arrayList.get(7).getText()=="0")) {
+        if ((arrayList.get(1).getText().equals("0")) && (arrayList.get(4).getText().equals("0")) && (arrayList.get(7).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }
         //7 8 9
-        if ((arrayList.get(6).getText()=="X") && (arrayList.get(7).getText()=="X") && (arrayList.get(8).getText()=="X")) {
+        if ((arrayList.get(6).getText().equals("X")) && (arrayList.get(7).getText().equals("X")) && (arrayList.get(8).getText().equals("X"))) {
             new WinnerWindow().open("X", frame.frameStyle);
             newGame();
         }
-        if ((arrayList.get(6).getText()=="0") && (arrayList.get(7).getText()=="0") && (arrayList.get(8).getText()=="0")) {
+        if ((arrayList.get(6).getText().equals("0")) && (arrayList.get(7).getText().equals("0")) && (arrayList.get(8).getText().equals("0"))) {
             new WinnerWindow().open("0", frame.frameStyle);
             newGame();
         }

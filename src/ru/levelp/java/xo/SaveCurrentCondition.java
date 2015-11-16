@@ -7,10 +7,10 @@ import java.io.*;
 
 public class SaveCurrentCondition implements Serializable, ActionListener {
 
-    MyFrame myFrame;
+    GUI gui;
 
-    public SaveCurrentCondition(MyFrame myFrame) {
-        this.myFrame = myFrame;
+    public SaveCurrentCondition(GUI gui) {
+        this.gui = gui;
     }
 
     public void serialize() {
@@ -24,7 +24,7 @@ public class SaveCurrentCondition implements Serializable, ActionListener {
                 FileOutputStream fos = new FileOutputStream(saveFile.getSelectedFile().getPath());
                 ObjectOutputStream os = new ObjectOutputStream(fos);
 
-                os.writeObject(myFrame);
+                os.writeObject(gui);
 
                 os.flush();
                 os.close();

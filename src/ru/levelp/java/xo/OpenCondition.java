@@ -19,7 +19,7 @@ public class OpenCondition implements ActionListener, Serializable {
     }
     
     public void deserialize(){
-        new SaveCurrentCondition(gui.frame).serialize();
+        new SaveCurrentCondition(gui).serialize();
 
         JFrame frame = new JFrame("");
         frame.setBounds(100, 100, 200, 100);
@@ -33,8 +33,13 @@ public class OpenCondition implements ActionListener, Serializable {
 
             Object o = is.readObject();
 
-            gui.frame.frameStyle = ((MyFrame)o).frameStyle.equals("blue") ? "red" : "blue";
+
+            gui.frame.frameStyle = ((GUI)o).frame.frameStyle.equals("blue") ? "red" : "blue";
             new SwitchGUI_Listener(gui).refresh();
+            for (int i = 0; i < 9; i++) {
+                gui.arrayList.get(i).setText(((GUI)o).arrayList.get(i).getText());
+            }
+            gui.isXStep = ((GUI)o).isXStep;
 
             is.close();
             fis.close();
